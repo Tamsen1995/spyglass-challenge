@@ -24,8 +24,12 @@
     let url: string | null;
     let planetResidents: string[] = [];
 
-    $: url = $page.url.searchParams.get('url');
-    $: url && fetchPlanetData(url);
+    onMount(async () => {
+        url = $page.url.searchParams.get('url');
+        if (url) {
+            await fetchPlanetData(url);
+        }
+    });
 
     async function fetchPlanetData(url: string) {
         planet = await fetchPlanet(url);
@@ -54,7 +58,7 @@
         margin-bottom: 1em;
     }
 
-    p, li {
+    li {
         font-size: 1.2em;
         line-height: 1.5;
         margin-bottom: 1em;

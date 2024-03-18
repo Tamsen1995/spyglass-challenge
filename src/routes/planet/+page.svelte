@@ -22,10 +22,13 @@
 
 <style>
     main {
-        background-color: #333;
-        color: #fff;
-        font-family: 'Helvetica Neue', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         padding: 2em;
+        background-color: #ECEFF1;
+        color: #37474F;
+        font-family: 'Roboto', sans-serif;
     }
 
     h1 {
@@ -40,35 +43,22 @@
     }
 
     a {
-        color: #ff0;
+        color: #2962FF;
         text-decoration: none;
+        font-size: 1.2em;
+        margin-top: 2em;
+        border: 2px solid #2962FF;
+        padding: 0.5em 1em;
+        border-radius: 2em;
+        transition: background-color 0.3s ease;
     }
 
     a:hover {
-        color: #ff0;
-        text-decoration: underline;
-    }
-
-    button {
-        background-color: #555;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-        font-size: 1em;
-        margin: 0.5em;
-        padding: 0.5em 1em;
-    }
-
-    button:disabled {
-        background-color: #777;
-        cursor: not-allowed;
-    }
-
-    .active {
-        background-color: #ff0;
-        color: #000;
+        background-color: #2962FF;
+        color: #ECEFF1;
     }
 </style>
+
 
 <main>
     {#if planet}

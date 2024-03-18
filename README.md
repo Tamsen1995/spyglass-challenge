@@ -1,6 +1,6 @@
 # Star Wars Universe Explorer
 
-Explore the vastness of the Star Wars universe with our interactive web application. Built with SvelteKit and TypeScript, this app allows users to browse through the planets of the Star Wars galaxy, learn about each one, and discover the residents who inhabit them.
+Explore the vastness of the Star Wars universe with this interactive web application. Built with SvelteKit and TypeScript, this app allows users to browse through the planets of the Star Wars galaxy, learn about each one, and discover the residents who inhabit them.
 
 ## Features
 

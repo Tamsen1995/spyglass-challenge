@@ -6,6 +6,7 @@ Explore the vastness of the Star Wars universe with our interactive web applicat
 
 - **Explore Planets**: Browse a paginated list of planets sourced from the Star Wars API (SWAPI).
 - **Planet Details**: Click on a planet to view detailed information, including its climate, terrain, population, and notable residents.
+- **Resident Details**: Click on a resident's name in the planet details to view more information about them in a modal.
 - **Planet Search**: Quickly find planets by name with the real-time search feature.
 - **Caching**: Leverages IndexedDB to cache API results for faster subsequent loads.
 - **Responsive Design**: Enjoy a seamless experience across all your devices.
@@ -49,3 +50,11 @@ This strategy ensures that the application always displays data that is reasonab
 ## Planet Search
 
 The application includes a real-time search feature that allows users to quickly find planets by name. As the user types in the search box, the list of planets is automatically filtered to match the search query. This feature makes it easy to locate specific planets without having to manually browse through the entire list.
+
+## Resident Details
+
+The application now includes a feature to view more details about the residents of each planet. When viewing a planet's details, a list of known residents is displayed. Each resident's name is a clickable button.
+
+When you click on a resident's name, a modal will appear on the screen. This modal displays detailed information about the resident, such as their name, height, mass, hair color, skin color, eye color, birth year, gender, and the films they've appeared in.
+
+To close the modal and return to the planet details, simply click on the 'Close' button in the modal. This feature makes it easy to learn more about the residents of each planet without having to navigate away from the planet's details page.

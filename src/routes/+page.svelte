@@ -2,10 +2,12 @@
     import { onMount } from 'svelte';
     import { fetchPlanets } from '$lib/api';
 
+    // Constants
     const BASE_URL = 'https://swapi.dev/api/planets/';
     const MAX_PAGE = 6; // since the count of planets is 60
     const pages = Array.from({length: MAX_PAGE}, (_, i) => i + 1);
 
+    // State variables
     let planets: any[] = [];
     let filteredPlanets: any[] = [];
     let next: string | null = null;
@@ -13,6 +15,7 @@
     let page: number = 1;
     let search: string = '';
 
+    // Fetch planets from API
     async function loadPlanets(url: string | null) {
         try {
             const data = await fetchPlanets(url);
@@ -25,15 +28,18 @@
         }
     }
 
+    // Navigate to a different page
     function navigatePage(newPage: number, url: string | null) {
         page = newPage;
         loadPlanets(url);
     }
 
+    // Filter planets based on search query
     $: {
         filteredPlanets = planets.filter(planet => planet.name.toLowerCase().includes(search.toLowerCase()));
     }
 
+    // Load planets on mount
     onMount(() => loadPlanets(BASE_URL));
 </script>
 

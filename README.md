@@ -1,38 +1,38 @@
-# create-svelte
+# Star Wars Universe Explorer
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Explore the vastness of the Star Wars universe with our interactive web application. Built with SvelteKit and TypeScript, this app allows users to browse through the planets of the Star Wars galaxy, learn about each one, and discover the residents who inhabit them.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Explore Planets**: Browse a paginated list of planets sourced from the Star Wars API (SWAPI).
+- **Planet Details**: Click on a planet to view detailed information, including its climate, terrain, population, and notable residents.
+- **Caching**: Leverages IndexedDB to cache API results for faster subsequent loads.
+- **Responsive Design**: Enjoy a seamless experience across all your devices.
+
+## Installation
+
+Install the necessary dependencies:
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+npm install
 ```
 
-## Developing
+## Running the Application
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+To run the application in development mode:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Building for Production
 
-To create a production version of your app:
+To create a production build:
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+## Live Application
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+The application is deployed and can be accessed at [spyglass-challenge-tau.vercel.app](https://spyglass-challenge-tau.vercel.app/).

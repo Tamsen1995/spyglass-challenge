@@ -40,23 +40,27 @@
         background-color: #ECEFF1;
         color: #37474F;
         font-family: 'Roboto', sans-serif;
+        width: 80%;
+        margin: 0 auto;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-
 
     h1 {
         font-size: 2.5em;
         margin-bottom: 1em;
+        text-align: center;
     }
 
     p {
         font-size: 1.2em;
-
         margin-bottom: 1em;
+        line-height: 1.5;
     }
 
     a {
         color: #2962FF;
         text-decoration: none;
+        transition: color 0.3s ease;
     }
 
     a:hover {
@@ -70,11 +74,10 @@
         color: #fff;
         cursor: pointer;
         font-size: 1em;
-
         padding: 0.5em 1em;
         border-radius: 4px;
         box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
-        transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
     }
 
     button:disabled {
@@ -86,11 +89,11 @@
         box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
     }
 
-
     .button-container {
         display: flex;
         justify-content: center;
         gap: 1em;
+        margin-top: 2em;
     }
 
     .active {

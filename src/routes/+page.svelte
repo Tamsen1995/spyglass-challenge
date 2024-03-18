@@ -42,6 +42,12 @@
     
         onMount(() => loadPlanets('https://swapi.dev/api/planets/'));
 </script>
+
+<style>
+    .active {
+        color: red;
+    }
+</style>
     
 <main>
     <h1>Planets</h1>
@@ -51,7 +57,7 @@
     {/each}
     <button on:click={previousPage} disabled={!previous}>Previous</button>
     {#each pages as p}
-        <button on:click={() => goToPage(p)}>{p}</button>
+        <button class:active={p === page} on:click={() => goToPage(p)}>{p}</button>
     {/each}
     <button on:click={nextPage} disabled={!next}>Next</button>
 </main>

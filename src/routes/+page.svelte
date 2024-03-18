@@ -7,14 +7,17 @@
     const pages = Array.from({length: MAX_PAGE}, (_, i) => i + 1);
 
     let planets: any[] = [];
+    let filteredPlanets: any[] = [];
     let next: string | null = null;
     let previous: string | null = null;
     let page: number = 1;
+    let search: string = '';
 
     async function loadPlanets(url: string | null) {
         try {
             const data = await fetchPlanets(url);
             planets = data.results;
+            filteredPlanets = planets;
             next = data.next;
             previous = data.previous;
         } catch (error) {
@@ -27,9 +30,12 @@
         loadPlanets(url);
     }
 
+    $: {
+        filteredPlanets = planets.filter(planet => planet.name.toLowerCase().includes(search.toLowerCase()));
+    }
+
     onMount(() => loadPlanets(BASE_URL));
 </script>
-
 
 <style>
     main {
@@ -99,12 +105,30 @@
     .active {
         background-color: #448AFF;
     }
+
+    input[type="text"] {
+        padding: 0.5em;
+        font-size: 1em;
+        border: 1px solid #B0BEC5;
+        border-radius: 4px;
+        margin-bottom: 1em;
+        width: 50%;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus {
+        border-color: #2962FF;
+        outline: none;
+        box-shadow: 0 0 5px rgba(41, 98, 255, 0.5);
+    }
+
 </style>
   
 <main>
     <h1>Planets</h1>
     <p>Page: {page}</p>
-    {#each planets as planet}
+    <input type="text" bind:value={search} placeholder="Search for planets">
+    {#each filteredPlanets as planet}
         <p><a href={`/planet?url=${encodeURIComponent(planet.url)}`}>{planet.name}</a></p>
     {/each}
     <div class="button-container">

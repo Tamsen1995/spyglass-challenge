@@ -1,47 +1,35 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { fetchPlanets } from '$lib/api';
-  
+
+    const BASE_URL = 'https://swapi.dev/api/planets/';
+    const MAX_PAGE = 6; // since the count of planets is 60
+    const pages = Array.from({length: MAX_PAGE}, (_, i) => i + 1);
+
     let planets: any[] = [];
     let next: string | null = null;
     let previous: string | null = null;
     let page: number = 1;
-    const maxPage = 6; // since the count of planets is 60
-    const pages = Array.from({length: maxPage}, (_, i) => i + 1);
 
     async function loadPlanets(url: string | null) {
         try {
             const data = await fetchPlanets(url);
             planets = data.results;
-            planets[0].url
             next = data.next;
             previous = data.previous;
         } catch (error) {
             console.error('Failed to fetch planets:', error);
         }
     }
-  
-    function nextPage() {
-        if (next) {
-            page++;
-            loadPlanets(next);
-        }
+
+    function navigatePage(newPage: number, url: string | null) {
+        page = newPage;
+        loadPlanets(url);
     }
-  
-    function previousPage() {
-        if (previous) {
-            page--;
-            loadPlanets(previous);
-        }
-    }
-  
-    function goToPage(p: number) {
-        loadPlanets(`https://swapi.dev/api/planets/?page=${p}`);
-        page = p;
-    }
-  
-    onMount(() => loadPlanets('https://swapi.dev/api/planets/'));
+
+    onMount(() => loadPlanets(BASE_URL));
 </script>
+
 
 <style>
     main {
@@ -117,10 +105,10 @@
         <p><a href={`/planet?url=${encodeURIComponent(planet.url)}`}>{planet.name}</a></p>
     {/each}
     <div class="button-container">
-        <button on:click={previousPage} disabled={!previous}>Previous</button>
+        <button on:click={() => navigatePage(page - 1, previous)} disabled={!previous}>Previous</button>
         {#each pages as p}
-            <button class:active={p === page} on:click={() => goToPage(p)}>{p}</button>
+            <button class:active={p === page} on:click={() => navigatePage(p, `${BASE_URL}?page=${p}`)}>{p}</button>
         {/each}
-        <button on:click={nextPage} disabled={!next}>Next</button>
+        <button on:click={() => navigatePage(page + 1, next)} disabled={!next}>Next</button>
     </div>
 </main>

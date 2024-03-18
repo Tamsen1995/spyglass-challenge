@@ -58,7 +58,7 @@
         margin-bottom: 1em;
     }
 
-    p, li {
+    li {
         font-size: 1.2em;
         line-height: 1.5;
         margin-bottom: 1em;

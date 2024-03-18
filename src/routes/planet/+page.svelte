@@ -21,11 +21,10 @@
     }
 
     let planet: Planet | null = null;
-    let url: string | null;
     let planetResidents: string[] = [];
 
     onMount(async () => {
-        url = $page.url.searchParams.get('url');
+        const url = $page.url.searchParams.get('url');
         if (url) {
             await fetchPlanetData(url);
         }
@@ -33,12 +32,14 @@
 
     async function fetchPlanetData(url: string) {
         planet = await fetchPlanet(url);
-        if (planet && planet.residents.length > 0) {
-            const residents = await Promise.all(planet.residents.map(fetchPerson));
-            planetResidents = residents.map(resident => resident.name);
-        } else {
-            planetResidents = ['No known residents'];
-        }
+        planetResidents = planet?.residents.length 
+            ? await fetchResidents(planet.residents) 
+            : ['No known residents'];
+    }
+
+    async function fetchResidents(residentUrls: string[]) {
+        const residents = await Promise.all(residentUrls.map(fetchPerson));
+        return residents.map(resident => resident.name);
     }
 </script>
 

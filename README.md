@@ -6,6 +6,7 @@ Explore the vastness of the Star Wars universe with our interactive web applicat
 
 - **Explore Planets**: Browse a paginated list of planets sourced from the Star Wars API (SWAPI).
 - **Planet Details**: Click on a planet to view detailed information, including its climate, terrain, population, and notable residents.
+- **Planet Search**: Quickly find planets by name with the real-time search feature.
 - **Caching**: Leverages IndexedDB to cache API results for faster subsequent loads.
 - **Responsive Design**: Enjoy a seamless experience across all your devices.
 
@@ -44,3 +45,7 @@ The application uses IndexedDB to cache API results, which significantly improve
 When the application fetches data, it first checks the cache. If the data is present and less than an hour old, the application uses the cached data. If the data is not present or is more than an hour old, the application fetches fresh data from the API, updates the cache, and then uses the fresh data.
 
 This strategy ensures that the application always displays data that is reasonably up-to-date, while still benefiting from the speed of cached data.
+
+## Planet Search
+
+The application includes a real-time search feature that allows users to quickly find planets by name. As the user types in the search box, the list of planets is automatically filtered to match the search query. This feature makes it easy to locate specific planets without having to manually browse through the entire list.

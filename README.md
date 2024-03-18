@@ -9,7 +9,6 @@ Explore the vastness of the Star Wars universe with this interactive web applica
 - **Resident Details**: Click on a resident's name in the planet details to view more information about them in a modal.
 - **Planet Search**: Quickly find planets by name with the real-time search feature.
 - **Caching**: Leverages IndexedDB to cache API results for faster subsequent loads.
-- **Responsive Design**: Enjoy a seamless experience across all your devices.
 
 ## Installation
 

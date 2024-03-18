@@ -36,3 +36,11 @@ npm run build
 ## Live Application
 
 The application is deployed and can be accessed at [spyglass-challenge-tau.vercel.app](https://spyglass-challenge-tau.vercel.app/).
+
+## Caching Strategy
+
+The application uses IndexedDB to cache API results, which significantly improves performance on subsequent loads.
+
+When the application fetches data, it first checks the cache. If the data is present and less than an hour old, the application uses the cached data. If the data is not present or is more than an hour old, the application fetches fresh data from the API, updates the cache, and then uses the fresh data.
+
+This strategy ensures that the application always displays data that is reasonably up-to-date, while still benefiting from the speed of cached data.

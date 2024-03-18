@@ -24,12 +24,14 @@
     let url: string | null;
     let planetResidents: string[] = [];
 
-    $: url = $page.url.searchParams.get('url');
-
-    $: url && fetchPlanetData(url);
+    onMount(async () => {
+        url = $page.url.searchParams.get('url');
+        if (url) {
+            await fetchPlanetData(url);
+        }
+    });
 
     async function fetchPlanetData(url: string) {
-
         planet = await fetchPlanet(url);
         if (planet && planet.residents.length > 0) {
             const residents = await Promise.all(planet.residents.map(fetchPerson));

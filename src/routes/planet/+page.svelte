@@ -2,6 +2,8 @@
     import { onMount } from 'svelte';
     import { fetchPerson, fetchPlanet } from '$lib/api';
     import { page } from '$app/stores';
+    import ResidentModal from '../../components/ResidentModal.svelte';
+    import type { Resident } from '../../types.ts';
 
     interface Planet {
         name: string;
@@ -21,7 +23,7 @@
     }
 
     let planet: Planet | null = null;
-    let planetResidents: string[] = [];
+    let planetResidents: Resident[] = [];
 
     onMount(async () => {
         const url = $page.url.searchParams.get('url');
@@ -34,12 +36,23 @@
         planet = await fetchPlanet(url);
         planetResidents = planet?.residents.length 
             ? await fetchResidents(planet.residents) 
-            : ['No known residents'];
+            : [];
     }
 
     async function fetchResidents(residentUrls: string[]) {
         const residents = await Promise.all(residentUrls.map(fetchPerson));
-        return residents.map(resident => resident.name);
+        console.log('Residents:', residents);
+        return residents.map(resident => resident);
+    }
+
+    let selectedResident: Resident | null = null;
+
+    async function showResidentDetails(url: string) {
+        selectedResident = await fetchPerson(url);
+    }
+
+    function closeResidentDetails() {
+        selectedResident = null;
     }
 </script>
 
@@ -59,10 +72,18 @@
         margin-bottom: 1em;
     }
 
+    ul {
+        list-style-type: none; /* removes bullet points */
+        padding: 0;
+    }
+
     li {
-        font-size: 1.2em;
-        line-height: 1.5;
-        margin-bottom: 1em;
+        padding: 10px 0; /* adds vertical padding */
+        border-bottom: 1px solid #ccc; /* adds a bottom border */
+    }
+
+    li:last-child {
+        border-bottom: none; /* removes the bottom border from the last item */
     }
 
     a {
@@ -87,10 +108,20 @@
         <h1>{planet.name}</h1>
         <h2>Known Residents</h2>
         <ul>
-            {#each planetResidents as resident}
-                <li>{resident}</li>
+            {#each planetResidents as resident (resident?.name)}
+                <li>
+                    <button on:click={() => resident?.url && showResidentDetails(resident.url)}>
+                        {resident?.name}
+                    </button>
+                </li>
+            {:else}
+                <li>No known residents</li>
             {/each}
         </ul>
     {/if}
     <a href="/">Back to list</a>
+
+    {#if selectedResident}
+        <ResidentModal resident={selectedResident} close={closeResidentDetails} />
+    {/if}
 </main>

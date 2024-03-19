@@ -54,6 +54,6 @@ The application includes a real-time search feature that allows users to quickly
 
 The application now includes a feature to view more details about the residents of each planet. When viewing a planet's details, a list of known residents is displayed. Each resident's name is a clickable button.
 
-When you click on a resident's name, a modal will appear on the screen. This modal displays detailed information about the resident, such as their name, height, mass, hair color, skin color, eye color, birth year, gender, and the films they've appeared in.
+When you click on a resident's name, a modal will appear on the screen. This modal displays detailed information about the resident, such as their name, height, mass, hair color, skin color, eye color, birth year, and gender.
 
 To close the modal and return to the planet details, simply click on the 'Close' button in the modal. This feature makes it easy to learn more about the residents of each planet without having to navigate away from the planet's details page.
